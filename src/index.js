@@ -15,12 +15,12 @@ import createSagaMiddleware from 'redux-saga';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery( 'FETCH_MOVIES', fetchMovies);
-    yield takeEvery( 'VIEW_DETAILS', viewDetails);
+    // yield takeEvery( 'VIEW_DETAILS', viewDetails);
 }
 
 // generator functions
 function* fetchMovies() {
-    console.log('in fetchMovies');
+    console.log( 'in fetchMovies' );
     try {
         const response = yield axios.get('/movies');
         yield put({ type: 'SET_MOVIES', payload: response.data });
@@ -29,20 +29,27 @@ function* fetchMovies() {
     }
 }
 
-function* viewDetails() {
-    console.log( 'in viewDetails' );
-    try {
-        const response = yield axios.get('/details');
-        yield put({ type: 'SET_DETAILS', payload: response.data });
-    } catch (error) {
-        console.log(error);
-    }
-}
+// function* viewDetails() {
+//     console.log( 'in viewDetails' );
+//     try {
+//         const response = yield axios.get('/details');
+//         yield put({ type: 'SET_DETAILS', payload: response.data });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
 // Used to store movies returned from the server
+const details = (state = [], action) => {
+    if(action.type === 'VIEW_DETAILS') {
+        return action.payload;
+    }
+    return state;
+}
+
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
@@ -65,6 +72,7 @@ const genres = (state = [], action) => {
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
+        details,
         movies,
         genres,
     }),

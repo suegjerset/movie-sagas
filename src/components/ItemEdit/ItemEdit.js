@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ItemEdit extends Component {
+
+    componentDidMount() {
+        console.log('in ItemEdit', this.props);
+    }
+
     render() {
         return (
             <div>
@@ -10,4 +16,6 @@ class ItemEdit extends Component {
     } // end render
 } // end class
 
-export default ItemEdit;
+const putStateOnProps = (reduxState) => ({ reduxState });
+
+export default connect(putStateOnProps)(ItemEdit);

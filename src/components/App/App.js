@@ -10,7 +10,7 @@ class App extends Component {
   // Renders the entire app on the DOM
   
   componentDidMount() {
-    console.log( 'app mounted' );
+    console.log( 'app mounted', this.props );
     this.props.dispatch({ type: 'FETCH_MOVIES' });
   }
 
@@ -19,9 +19,12 @@ class App extends Component {
       <div className="App">
         <h2>React App: Saga Movies Weekend</h2>
         <HashRouter>
-          <Route exact path="/" component={ MovieList } />
-          <Route path="/details" component={ ItemDetails } />
-          <Route path="/edit" component={ ItemEdit } />
+          <Route exact path='/' render={(props) => 
+            <MovieList {...props} dispatch={this.props.dispatch}/>} />
+          <Route path='/details' render={(props) =>
+            <ItemDetails {...props} dispatch={this.props.dispatch} />} /> 
+          <Route path='/edit' render={(props) =>
+            <ItemEdit {...props} dispatch={this.props.dispatch} />} />
         </HashRouter>
       </div>
     );

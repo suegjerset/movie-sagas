@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import MovieItem from '../MovieItem/MovieItem';
 
 class MovieList extends Component {
+
+    componentDidMount() {
+        console.log( 'MovieList mounted', this.props );
+    }
+
     render() {
         console.log( 'movies array mapped' );
         return (
