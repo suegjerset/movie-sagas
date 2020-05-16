@@ -14,7 +14,8 @@ import createSagaMiddleware from 'redux-saga';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery( 'FETCH_MOVIES', fetchMovies) ;
+    yield takeEvery( 'FETCH_MOVIES', fetchMovies);
+    yield takeEvery( 'VIEW_DETAILS', viewDetails);
 }
 
 // generator functions
@@ -25,6 +26,16 @@ function* fetchMovies() {
         yield put({ type: 'SET_MOVIES', payload: response.data });
     } catch ( error ) {
         console.log( error );
+    }
+}
+
+function* viewDetails() {
+    console.log( 'in viewDetails' );
+    try {
+        const response = yield axios.get('/details');
+        yield put({ type: 'SET_DETAILS', payload: response.data });
+    } catch (error) {
+        console.log(error);
     }
 }
 

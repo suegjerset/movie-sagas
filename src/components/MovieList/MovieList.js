@@ -4,7 +4,7 @@ import MovieItem from '../MovieItem/MovieItem';
 
 class MovieList extends Component {
     render() {
-        console.log( 'list rendered' );
+        console.log( 'movies array mapped' );
         return (
             <div>
                 <ul>

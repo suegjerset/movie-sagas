@@ -19,6 +19,7 @@ class MovieItem extends Component {
     } // end handleClick
 
     render() {
+        console.log( 'movie items displayed' );
         return (
             <div>
                 {/* <p>{JSON.stringify(this.props.reduxState.movies.)}</p> */}

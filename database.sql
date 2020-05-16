@@ -17,9 +17,33 @@ CREATE TABLE "genres" (
 -- This table will need to be populated with some data as well (INSERTS)
 -- Recall that this Junction Table will just be a table of ids!
 
-
+CREATE TABLE "movie_genre" (
+  "id" SERIAL PRIMARY KEY,
+  "movie_id" INT NOT NULL,
+  "genre_id" INT NOT NULL
+);
 
 --------[ DATA! ]---------
+INSERT INTO "movie_genre" ("movie_id", "genre_id")
+VALUES 
+(1, 11),
+(2, 2),
+(2, 10),
+(3, 13),
+(4, 2),
+(5, 14),
+(6, 8),
+(7, 14),
+(8, 6),
+(9, 2),
+(10, 12),
+(10, 7),
+(11, 13),
+(12, 3),
+(13, 7),
+(13, 10),
+(13, 5),
+(14, 1);
 
 -- starter movies
 INSERT INTO "movies" ("title", "poster", "description")
@@ -55,3 +79,12 @@ VALUES
 ('Science Fiction'),
 ('Space-Opera'),
 ('Superhero');
+
+
+-- get movie and genre details by id
+SELECT movies.id, title, description, genres.name
+FROM movies
+JOIN movie_genre ON movies.id = movie_genre.movie_id
+JOIN genres ON movie_genre.genre_id = genres.id
+GROUP BY movies.id, genres.name
+ORDER BY movies.id ASC;
