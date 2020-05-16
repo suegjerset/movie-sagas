@@ -4,10 +4,6 @@ import { HashRouter, Link } from 'react-router-dom';
 
 class MovieItem extends Component {
 
-    // componentDidMount() {
-    //     console.log( 'MovieItem mounted', this.props);
-    // }
-
     handleClick = () => {
         console.log( 'in handleClick', this.props.movie.id );
         this.props.dispatch({

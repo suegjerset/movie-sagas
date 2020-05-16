@@ -15,7 +15,7 @@ import createSagaMiddleware from 'redux-saga';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery( 'FETCH_MOVIES', fetchMovies);
-    // yield takeEvery( 'VIEW_DETAILS', viewDetails);
+    yield takeEvery( 'FETCH_GENRES', fetchGenres);
 }
 
 // generator functions
@@ -26,6 +26,16 @@ function* fetchMovies() {
         yield put({ type: 'SET_MOVIES', payload: response.data });
     } catch ( error ) {
         console.log( error );
+    }
+}
+
+function* fetchGenres() {
+    console.log('in fetchGenres');
+    try {
+        const response = yield axios.get('/genres');
+        yield put({ type: 'SET_GENRES', payload: response.data });
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -42,14 +52,25 @@ function* fetchMovies() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Used to store movies returned from the server
+
+// const details = (state = [], action) => {
+//     if(action.type === 'VIEW_DETAILS') {
+//         return action.payload;
+//     }
+//     return state;
+// }
+
+// Used to store the clicked movie details
 const details = (state = [], action) => {
-    if(action.type === 'VIEW_DETAILS') {
-        return action.payload;
+    switch (action.type) {
+        case 'VIEW_DETAILS':
+            return action.payload;
+        default:
+            return state;
     }
-    return state;
 }
 
+// Used to store movies returned from the server
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
