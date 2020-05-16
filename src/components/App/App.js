@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
+import MovieList from '../MovieList/MovieList';
 
 class App extends Component {
   // Renders the entire app on the DOM
@@ -13,7 +14,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p>Empty Page</p>
+        <p>React App: Saga Movies Weekend</p>
+        <MovieList />
       </div>
     );
   }
