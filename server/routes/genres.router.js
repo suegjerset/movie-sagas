@@ -3,6 +3,8 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// GET router to fetch the genre 'name' for a specifc movie based on matching
+// data fields in three tables by id to send back the result(s) in rows
 router.get('/:id', (req, res) => {
     let query = `SELECT name FROM movies 
     JOIN movie_genre ON movies.id = movie_genre.movie_id 

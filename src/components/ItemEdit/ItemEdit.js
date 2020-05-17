@@ -3,21 +3,24 @@ import { connect } from 'react-redux';
 
 class ItemEdit extends Component {
 
+    // sets state with information from revise reducer
     state = {
-        id: this.props.reduxState.details.id,
-        title: this.props.reduxState.details.title,
-        description: this.props.reduxState.details.description
+        id: this.props.reduxState.revise.id,
+        title: this.props.reduxState.revise.title,
+        description: this.props.reduxState.revise.description
     }
 
     componentDidMount() {
         console.log( 'in ItemEdit' );
     }
 
+    // cancel button takes user back to /details page
     cancelClick = () => {
         console.log( 'Cancel Button clicked' );
         this.props.history.goBack();
     } // end cancelClick
 
+    // collects user input for movie description and updates local state
     descriptionChange = (event) => {
         // console.log('in descriptionChange', event.target.value);
         console.log( 'in descriptionChange' );
@@ -26,6 +29,7 @@ class ItemEdit extends Component {
         }) // end setState
     } // end handleChange
 
+    // collects user input for move title and updates local state
     titleChange = (event) => {
         // console.log( 'in titleChange', event.target.value);
         console.log( 'in titleChange' );
@@ -34,13 +38,17 @@ class ItemEdit extends Component {
         }) // end setState
     } // end titleChange
 
+    // dispatches updated information to saga
+    // dispatches updated information to details reducer
+    // sends user to /details page which will display updated movie information
     saveClick = () => {
         console.log( 'Save Button clicked' );
         this.props.dispatch( { type: 'UPDATE_MOVIE', payload: this.state } );
-        this.props.dispatch( { type: 'VIEW_DETAILS', payload: this.state} );
+        this.props.dispatch( { type: 'VIEW_DETAILS', payload: this.state } );
         this.props.history.push( '/details' );
     } // end saveClick
 
+    // renders current movie title, input boxes for revisions and Cancel/Save buttons
     render() {
         return (
             <div>

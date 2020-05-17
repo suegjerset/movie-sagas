@@ -6,9 +6,11 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
+
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 
@@ -20,6 +22,7 @@ function* rootSaga() {
 }
 
 // generator functions
+// fetches all movies from database and dispatches to movies reducer
 function* fetchMovies() {
     console.log( 'in fetchMovies' );
     try {
@@ -30,6 +33,7 @@ function* fetchMovies() {
     }
 } // end fetchMovies
 
+// fetches all genres from database and dispatches to genres reducer
 function* fetchGenres(action) {
     console.log( 'in fetchGenres' );
     let id = action.payload;
@@ -41,6 +45,8 @@ function* fetchGenres(action) {
     }
 } // end fetchGenres
 
+// sends updated movie title/description to server/database
+// fetches all movies from database and dispatches to movies reducer
 function* updateMovie(action) {
     console.log( 'in updateMovie' );
     let id = action.payload.id;
@@ -60,6 +66,16 @@ const sagaMiddleware = createSagaMiddleware();
 const details = (state = [], action) => {
     switch (action.type) {
         case 'VIEW_DETAILS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+// Used to store revised movie information
+const revise = (state = [], action) => {
+    switch (action.type) {
+        case 'EDIT_DETAILS':
             return action.payload;
         default:
             return state;
@@ -90,6 +106,7 @@ const genres = (state = [], action) => {
 const storeInstance = createStore(
     combineReducers({
         details,
+        revise,
         movies,
         genres,
     }),

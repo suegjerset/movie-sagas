@@ -12,6 +12,8 @@ class MovieList extends Component {
         console.log( 'movies array mapped' );
         return (
             <div>
+                {/* map through movies reducer and send each individual item to 
+                MovieItem component along with the ability to use history */}
                 <ul>
                     {this.props.reduxState.movies.map ((movie) => {
                         return (

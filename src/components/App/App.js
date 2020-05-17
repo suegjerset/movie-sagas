@@ -9,11 +9,13 @@ import { HashRouter, Route } from 'react-router-dom';
 class App extends Component {
   // Renders the entire app on the DOM
   
+  // display all movies on page load
   componentDidMount() {
-    console.log( 'app mounted', this.props );
+    console.log( 'app mounted' );
     this.props.dispatch({ type: 'FETCH_MOVIES' });
   }
 
+  // set up routers to specific pages for components
   render() {
     return (
       <div className="App">

@@ -3,6 +3,8 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// GET router to fetch everything from the "movies" table in database
+// sends back the result in rows
 router.get('/', (req, res) => {
     console.log( 'in GET /movies' );
     let query = `SELECT * FROM movies ORDER BY movies.id ASC;`;
@@ -15,6 +17,8 @@ router.get('/', (req, res) => {
     });
 }); // end GET request
 
+// PUT router to update "movies" table in database
+// with revised title/description based on movie id
 router.put('/:id', (req, res) => {
     console.log( 'in PUT /movies' );
     let movieId = req.params.id;

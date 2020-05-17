@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 class MovieItem extends Component {
 
+    // when movie poster is clicked, dispatch info to details reducer
+    // and dispatch movie id to saga watcher for FETCH_GENRES
+    // send user to /details page
     handleClick = () => {
         console.log( 'in handleClick', this.props.movie.id );
         this.props.dispatch({
@@ -20,6 +23,7 @@ class MovieItem extends Component {
     render() {
         return (
             <div>
+                {/* displays each poster, which is clickable, along with its title and description */}
                 <li>
                     <img src={this.props.movie.poster} alt={this.props.movie.title} onClick={this.handleClick}/>
                     <h3>{this.props.movie.title}</h3>
