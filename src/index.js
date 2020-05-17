@@ -16,6 +16,7 @@ import createSagaMiddleware from 'redux-saga';
 function* rootSaga() {
     yield takeEvery( 'FETCH_MOVIES', fetchMovies);
     yield takeEvery( 'FETCH_GENRES', fetchGenres);
+    yield takeEvery( 'UPDATE_MOVIE', updateMovie);
 }
 
 // generator functions
@@ -25,9 +26,9 @@ function* fetchMovies() {
         const response = yield axios.get('/movies');
         yield put({ type: 'SET_MOVIES', payload: response.data });
     } catch (error) {
-        console.log( 'error in fetchMovies', error);
+        console.log( 'error in fetching movies', error);
     }
-}
+} // end fetchMovies
 
 function* fetchGenres(action) {
     console.log( 'in fetchGenres' );
@@ -36,9 +37,19 @@ function* fetchGenres(action) {
         const response = yield axios.get(`/genres/${id}`);
         yield put({ type: 'SET_GENRES', payload: response.data });
     } catch (error) {
-        console.log( 'error in fetchGenres', error);
+        console.log( 'error in fetching genres', error);
     }
-}
+} // end fetchGenres
+
+function* updateMovie(action) {
+    console.log( 'in updateMovie' );
+    let id = action.payload.id;
+    try {
+        yield axios.put(`/movies/${id}`, (action.payload));
+    } catch (error) {
+        console.log( 'error updating movie', error);
+    }
+} // end updateMovie
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -52,6 +63,16 @@ const details = (state = [], action) => {
             return state;
     }
 }
+
+// Used to store revised movie information
+// const revise = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_EDIT':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {

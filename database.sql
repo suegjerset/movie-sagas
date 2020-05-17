@@ -80,8 +80,12 @@ VALUES
 ('Space-Opera'),
 ('Superhero');
 
+-- select all movies to display on DOM
+SELECT * 
+FROM movies 
+ORDER BY movies.id ASC;
 
--- get movie and genre details by id
+-- get all movie and genre details
 SELECT movies.id, title, description, genres.name
 FROM movies
 JOIN movie_genre ON movies.id = movie_genre.movie_id
@@ -96,4 +100,13 @@ JOIN movie_genre ON movies.id = movie_genre.movie_id
 JOIN genres ON movie_genre.genre_id = genres.id
 WHERE movies.id = 2
 ORDER BY title;
+
+-- update movies table with new title and/or description for specific movie id
+UPDATE movies
+SET title = 'new title'
+WHERE id = 10;
+
+UPDATE movies
+SET description = 'new description'
+WHERE id = 10;
 

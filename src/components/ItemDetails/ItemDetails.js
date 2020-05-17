@@ -9,7 +9,7 @@ class ItemDetails extends Component {
 
     backClick = () => {
         console.log( 'Back Button clicked' );
-        this.props.history.goBack()
+        this.props.history.push('/');
     }
 
     editClick = () => {
@@ -28,15 +28,18 @@ class ItemDetails extends Component {
 
     render() {
         let movie = this.props.reduxState.details
-        // let genre = this.props.reduxState.genre
         return (
             <div>
-                {/* <p>{JSON.stringify(this.props.reduxState.details)}</p> */}
+                {/* <p>{JSON.stringify(this.props.reduxState.genres)}</p> */}
                 <button onClick={this.backClick}>Back to List</button>
                 <button onClick={this.editClick}>Edit</button>
                 <h2>{movie.title}</h2>
                 <p>{movie.description}</p>
-                <p>Genres: {this.props.reduxState.genres.map(item => <span>{item.name}</span>)}</p>
+                <h4>Genres:</h4>
+                    <ul>
+                    {this.props.reduxState.genres.map( item => 
+                        <li key={item.name}>{item.name}</li>)}
+                    </ul>   
             </div>
         ); // end return
     } // end render
