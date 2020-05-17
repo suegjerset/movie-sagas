@@ -46,6 +46,8 @@ function* updateMovie(action) {
     let id = action.payload.id;
     try {
         yield axios.put(`/movies/${id}`, (action.payload));
+        const response = yield axios.get('/movies');
+        yield put({ type: 'SET_MOVIES', payload: response.data });
     } catch (error) {
         console.log( 'error updating movie', error);
     }
@@ -63,16 +65,6 @@ const details = (state = [], action) => {
             return state;
     }
 }
-
-// Used to store revised movie information
-// const revise = (state = [], action) => {
-//     switch (action.type) {
-//         case 'SET_EDIT':
-//             return action.payload;
-//         default:
-//             return state;
-//     }
-// }
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
