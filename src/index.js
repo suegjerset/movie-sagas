@@ -66,7 +66,7 @@ const details = (state = [], action) => {
     }
 }
 
-// Used to store movies returned from the server
+// Used to store movies returned from server/database
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
@@ -76,7 +76,7 @@ const movies = (state = [], action) => {
     }
 }
 
-// Used to store the movie genres
+// Used to store the movie genres returned from server/database
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':

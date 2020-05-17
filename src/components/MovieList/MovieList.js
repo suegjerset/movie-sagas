@@ -5,7 +5,7 @@ import MovieItem from '../MovieItem/MovieItem';
 class MovieList extends Component {
 
     componentDidMount() {
-        console.log( 'MovieList mounted', this.props );
+        console.log( 'MovieList mounted' );
     }
 
     render() {

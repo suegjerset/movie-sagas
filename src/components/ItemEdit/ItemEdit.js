@@ -5,12 +5,12 @@ class ItemEdit extends Component {
 
     state = {
         id: this.props.reduxState.details.id,
-        title: '',
-        description: ''
+        title: this.props.reduxState.details.title,
+        description: this.props.reduxState.details.description
     }
 
     componentDidMount() {
-        console.log( 'in ItemEdit', this.props);
+        console.log( 'in ItemEdit' );
     }
 
     cancelClick = () => {
@@ -36,7 +36,8 @@ class ItemEdit extends Component {
 
     saveClick = () => {
         console.log( 'Save Button clicked' );
-        this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state })
+        this.props.dispatch( { type: 'UPDATE_MOVIE', payload: this.state } );
+        this.props.dispatch( { type: 'VIEW_DETAILS', payload: this.state} );
         this.props.history.push( '/details' );
     } // end saveClick
 

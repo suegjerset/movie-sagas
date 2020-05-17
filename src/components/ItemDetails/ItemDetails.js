@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class ItemDetails extends Component {
 
     componentDidMount() {
-        console.log( 'ItemDetails mounted', this.props);
+        console.log( 'ItemDetails mounted' );
     }
 
     backClick = () => {
