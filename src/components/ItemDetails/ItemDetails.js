@@ -36,6 +36,7 @@ class ItemDetails extends Component {
                 <button onClick={this.editClick}>Edit</button>
                 <h2>{movie.title}</h2>
                 <p>{movie.description}</p>
+                <p>Genres: {this.props.reduxState.genres.map(item => <span>{item.name}</span>)}</p>
             </div>
         ); // end return
     } // end render
