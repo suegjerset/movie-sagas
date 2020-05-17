@@ -13,9 +13,12 @@ Since there is no navigation available, routers were utilized to move the user f
 ## Screen Shots
 
 ![main display](/wireframes/main-display.png)
-![movie details](/wireframe/move-details.png)
-![edit movie](/wireframe/edit-movie.png)
-![revised movie](/wireframe/revised-movie.png)
+
+![movie details](/wireframes/move-details.png)
+
+![edit movie](/wireframes/edit-movie.png)
+
+![revised movie](/wireframes/revised-movie.png)
 
 ## Usage
 
