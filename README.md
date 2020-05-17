@@ -14,7 +14,7 @@ Since there is no navigation available, routers were utilized to move the user f
 
 ![main display](/wireframes/main-display.png)
 
-![movie details](/wireframes/move-details.png)
+![movie details](/wireframes/movie-details.png)
 
 ![edit movie](/wireframes/edit-movie.png)
 
