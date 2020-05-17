@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './ItemDetails.css';
 
 class ItemDetails extends Component {
 
@@ -33,16 +34,16 @@ class ItemDetails extends Component {
     render() {
         let movie = this.props.reduxState.details
         return (
-            <div>
+            <div className="movie-details">
                 {/* <p>{JSON.stringify(this.props.reduxState.genres)}</p> */}
                 <button onClick={this.backClick}>Back to List</button>
-                <button onClick={this.editClick}>Edit</button>
+                <button className="edit-btn" onClick={this.editClick}>Edit</button>
                 <h2>{movie.title}</h2>
-                <p>{movie.description}</p>
+                <p><span className="description">Description:</span> {movie.description}</p>
                 <h4>Genres:</h4>
                     <ul>
-                    {this.props.reduxState.genres.map( item => 
-                        <li key={item.name}>{item.name}</li>)}
+                        {this.props.reduxState.genres.map( item => 
+                            <li key={item.name}>{item.name}</li>)}
                     </ul>   
             </div>
         ); // end return

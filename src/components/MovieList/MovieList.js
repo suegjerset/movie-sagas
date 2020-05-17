@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieItem from '../MovieItem/MovieItem';
+import './MovieList.css';
 
 class MovieList extends Component {
 
@@ -11,16 +12,12 @@ class MovieList extends Component {
     render() {
         console.log( 'movies array mapped' );
         return (
-            <div>
+            <div className="movie-list">
                 {/* map through movies reducer and send each individual item to 
                 MovieItem component along with the ability to use history */}
-                <ul>
-                    {this.props.reduxState.movies.map ((movie) => {
-                        return (
-                            <MovieItem key={movie.id} movie={movie} history={this.props.history}/>
-                        );
-                    })}
-                </ul>
+                {this.props.reduxState.movies.map (movie => 
+                    <MovieItem key={movie.id} movie={movie} history={this.props.history}/>
+                )}
             </div>
         ); // end return
     } // end render

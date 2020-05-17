@@ -19,7 +19,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>React App: Saga Movies Weekend</h2>
+        <header className="App-Header">
+          <h1 className="App-Title">Saga Movies Weekend</h1>
+        </header>
+        
         <HashRouter>
           <Route exact path='/' render={(props) => 
             <MovieList {...props} dispatch={this.props.dispatch}/>} />

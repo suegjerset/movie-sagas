@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './MovieItem.css';
 
 class MovieItem extends Component {
 
@@ -22,13 +23,12 @@ class MovieItem extends Component {
 
     render() {
         return (
-            <div>
-                {/* displays each poster, which is clickable, along with its title and description */}
-                <li>
-                    <img src={this.props.movie.poster} alt={this.props.movie.title} onClick={this.handleClick}/>
-                    <h3>{this.props.movie.title}</h3>
-                    <p>{this.props.movie.description}</p>
-                </li>
+            <div className="movie-item">
+                {/* displays each poster, which is clickable, along with its title */}
+                <img src={this.props.movie.poster} alt={this.props.movie.title} onClick={this.handleClick}/>
+                <h3>{this.props.movie.title}</h3>
+                {/* decided not to display description here but rather on /details instead */}
+                {/* <p>{this.props.movie.description}</p> */}
             </div>
         ); // end return
     } // end render

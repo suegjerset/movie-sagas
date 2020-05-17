@@ -1,0 +1,8 @@
+.movie-item {
+    width: 330px;
+    padding: 15px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: center;
+}

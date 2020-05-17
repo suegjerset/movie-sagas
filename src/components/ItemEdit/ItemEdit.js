@@ -55,16 +55,15 @@ class ItemEdit extends Component {
                 <h3>Editing: {this.props.reduxState.details.title}</h3>
                 <div>
                     <button onClick={this.cancelClick}>Cancel</button>
-                    <button onClick={this.saveClick}>Save</button>
+                    <button className="edit-btn" onClick={this.saveClick}>Save</button>
                 </div>
-                <div>
-                    <input type="text" placeholder="enter movie title" 
-                        onChange={this.titleChange}/>
-                </div>
-                <div>
-                    <textarea placeholder="enter movie description" rows="5" cols="25" 
-                        onChange={this.descriptionChange}></textarea>
-                </div>
+                <p>Title:</p>
+                <p><input type="text" placeholder="enter movie title" onChange={this.titleChange}/>
+                </p>
+                <p>Description:</p>
+                <p><textarea placeholder="enter movie description" rows="5" cols="40" 
+                    onChange={this.descriptionChange}></textarea>
+                </p>
             </div>
         ); // end return
     } // end render

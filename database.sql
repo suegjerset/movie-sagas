@@ -11,7 +11,6 @@ CREATE TABLE "genres" (
   "name" VARCHAR(80) NOT NULL
 );
 
-
 -- CREATE JUNCTION TABLE
 -- You will need to create the junction table that stores the relationships between "movies" and "genres"
 -- This table will need to be populated with some data as well (INSERTS)
@@ -103,10 +102,5 @@ ORDER BY title;
 
 -- update movies table with new title and/or description for specific movie id
 UPDATE movies
-SET title = 'new title'
+SET title = 'new title', SET description = 'new description'
 WHERE id = 10;
-
-UPDATE movies
-SET description = 'new description'
-WHERE id = 10;
-
