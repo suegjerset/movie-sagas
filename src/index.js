@@ -24,41 +24,24 @@ function* fetchMovies() {
     try {
         const response = yield axios.get('/movies');
         yield put({ type: 'SET_MOVIES', payload: response.data });
-    } catch ( error ) {
-        console.log( error );
+    } catch (error) {
+        console.log( 'error in fetchMovies', error);
     }
 }
 
-function* fetchGenres() {
-    console.log('in fetchGenres');
+function* fetchGenres(action) {
+    console.log( 'in fetchGenres' );
+    let id = action.payload;
     try {
-        const response = yield axios.get('/genres');
+        const response = yield axios.get(`/genres/${id}`);
         yield put({ type: 'SET_GENRES', payload: response.data });
     } catch (error) {
-        console.log(error);
+        console.log( 'error in fetchGenres', error);
     }
 }
-
-// function* viewDetails() {
-//     console.log( 'in viewDetails' );
-//     try {
-//         const response = yield axios.get('/details');
-//         yield put({ type: 'SET_DETAILS', payload: response.data });
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
-
-
-// const details = (state = [], action) => {
-//     if(action.type === 'VIEW_DETAILS') {
-//         return action.payload;
-//     }
-//     return state;
-// }
 
 // Used to store the clicked movie details
 const details = (state = [], action) => {

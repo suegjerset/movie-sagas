@@ -88,3 +88,12 @@ JOIN movie_genre ON movies.id = movie_genre.movie_id
 JOIN genres ON movie_genre.genre_id = genres.id
 GROUP BY movies.id, genres.name
 ORDER BY movies.id ASC;
+
+-- get genre(s) for specific movie id
+SELECT name
+FROM movies
+JOIN movie_genre ON movies.id = movie_genre.movie_id
+JOIN genres ON movie_genre.genre_id = genres.id
+WHERE movies.id = 2
+ORDER BY title;
+

@@ -14,15 +14,16 @@ class ItemDetails extends Component {
 
     editClick = () => {
         console.log( 'Edit Button clicked' );
+        let item = this.props.reduxState.details;
         this.props.dispatch({
             type: 'EDIT_DETAILS',
             payload: {
-                id: this.props.reduxState.details.id,
-                title: this.props.reduxState.details.title,
-                description: this.props.reduxState.details.description
+                id: item.id,
+                title: item.title,
+                description: item.description
             }
         });
-        this.props.history.push('/edit');
+        this.props.history.push( '/edit' );
     }
 
     render() {

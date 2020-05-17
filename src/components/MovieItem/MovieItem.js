@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter, Link } from 'react-router-dom';
 
 class MovieItem extends Component {
 
@@ -14,20 +13,18 @@ class MovieItem extends Component {
                 description: this.props.movie.description
             }
         });
+        this.props.dispatch( {type: 'FETCH_GENRES', payload: this.props.movie.id} );
+        this.props.history.push( '/details' );
     } // end handleClick
 
     render() {
         return (
             <div>
-                <HashRouter>
-                    <li>
-                        <Link to='/details'>
-                        <img src={this.props.movie.poster} alt={this.props.movie.title} onClick={this.handleClick}/>
-                        </Link>
-                        <h3>{this.props.movie.title}</h3>
-                        <p>{this.props.movie.description}</p>
-                    </li>
-                </HashRouter>
+                <li>
+                    <img src={this.props.movie.poster} alt={this.props.movie.title} onClick={this.handleClick}/>
+                    <h3>{this.props.movie.title}</h3>
+                    <p>{this.props.movie.description}</p>
+                </li>
             </div>
         ); // end return
     } // end render
